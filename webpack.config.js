@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -49,6 +50,9 @@ module.exports = {
       template: './src/index.html',
     }),
     new ExtractTextPlugin('static/css/styles.css'),
+    new UglifyJSPlugin({
+      sourceMap: true,
+    }),
     new BundleAnalyzerPlugin({
       // Can be `server`, `static` or `disabled`.
       // In `server` mode analyzer will start HTTP server to show bundle report.
