@@ -6,9 +6,12 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/index.js',
+  entry: {
+    app: './src/index.js',
+    vendor: ['react', 'react-dom', 'react-router']
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[hash].js',
     path: './dist',
     publicPath: '/',
   },
@@ -46,9 +49,14 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+      filename: '[name].[hash].js',
+    }),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': '"production"'
+        'NODE_ENV': '"production"',
       }
     }),
     new HtmlWebpackPlugin({
