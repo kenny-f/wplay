@@ -71,7 +71,7 @@ module.exports = {
       // Relative to bundles output directory.
       reportFilename: 'report.html',
       // Automatically open report in default browser
-      openAnalyzer: true,
+      openAnalyzer: false,
       // If `true`, Webpack Stats JSON file will be generated in bundles output directory
       generateStatsFile: false,
       // Name of Webpack Stats JSON file that will be generated if `generateStatsFile` is `true`.
